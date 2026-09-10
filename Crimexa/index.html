@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crimexa - AI Criminal Network Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h1>CRIMEXA</h1>
+        <p class="subtitle">AI Investigation System</p>
+
+        <nav>
+            <button class="nav-btn active" onclick="showPage('dashboard-page', this)">🏠 Dashboard</button>
+            <button class="nav-btn" onclick="showPage('criminals-page', this)">👤 Criminal Records</button>
+            <button class="nav-btn" onclick="showPage('network-page', this)">🕸️ Network Analysis</button>
+            <button class="nav-btn" onclick="showPage('documents-page', this)">📄 Document Verification</button>
+            <button class="nav-btn" onclick="showPage('cases-page', this)">📁 Case Management</button>
+            <button class="nav-btn" onclick="showPage('reports-page', this)">📊 Reports</button>
+        </nav>
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- DASHBOARD -->
+        <section id="dashboard-page" class="page active-page">
+
+            <header>
+                <div>
+                    <h2>Investigation Dashboard</h2>
+                    <p>AI-powered criminal network intelligence</p>
+                </div>
+                <button class="notification" onclick="showNotification()">🔔</button>
+            </header>
+
+            <div class="cards">
+
+                <div class="card clickable" onclick="showPageById('cases-page')">
+                    <span>📁</span>
+                    <h3>24</h3>
+                    <p>Active Cases</p>
+                </div>
+
+                <div class="card clickable" onclick="showPageById('criminals-page')">
+                    <span>👤</span>
+                    <h3>148</h3>
+                    <p>Suspects</p>
+                </div>
+
+                <div class="card clickable" onclick="showPageById('network-page')">
+                    <span>🔗</span>
+                    <h3>327</h3>
+                    <p>Network Links</p>
+                </div>
+
+                <div class="card clickable" onclick="showPageById('documents-page')">
+                    <span>📄</span>
+                    <h3>17</h3>
+                    <p>Suspicious Documents</p>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <!-- RECENT CASES -->
+                <div class="panel">
+                    <h3>Recent Cases</h3>
+
+                    <div class="case clickable" onclick="caseDetails('CASE-1024')">
+                        <div>
+                            <strong>CASE-1024</strong>
+                            <p>Organized Crime Investigation</p>
+                        </div>
+                        <span class="danger">HIGH</span>
+                    </div>
+
+                    <div class="case clickable" onclick="caseDetails('CASE-1021')">
+                        <div>
+                            <strong>CASE-1021</strong>
+                            <p>Financial Fraud Network</p>
+                        </div>
+                        <span class="warning">MEDIUM</span>
+                    </div>
+
+                    <div class="case clickable" onclick="caseDetails('CASE-1018')">
+                        <div>
+                            <strong>CASE-1018</strong>
+                            <p>Document Forgery</p>
+                        </div>
+                        <span class="danger">HIGH</span>
+                    </div>
+                </div>
+
+
+                <!-- ACTIVITY -->
+                <div class="panel">
+                    <h3>Investigation Activity</h3>
+
+                    <div class="activity clickable" onclick="activityInfo('Network Analysis')">
+                        🕸️ Network relationship detected
+                        <small>10 minutes ago</small>
+                    </div>
+
+                    <div class="activity clickable" onclick="activityInfo('Document Verification')">
+                        📄 Suspicious document detected
+                        <small>25 minutes ago</small>
+                    </div>
+
+                    <div class="activity clickable" onclick="activityInfo('Risk Analysis')">
+                        ⚠️ High-risk suspect identified
+                        <small>1 hour ago</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CRIMINAL RECORDS -->
+        <section id="criminals-page" class="page">
+
+            <h2>Criminal Records</h2>
+            <p>Search and analyze suspect information.</p>
+
+            <input type="text" id="suspectSearch"
+                   placeholder="Search suspect..."
+                   onkeyup="searchSuspects()">
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Cases</th>
+                            <th>Risk</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="suspectTable">
+                        <tr>
+                            <td>S001</td>
+                            <td>Arjun Mehta</td>
+                            <td>Indore</td>
+                            <td>5</td>
+                            <td class="danger">HIGH</td>
+                            <td>Under Investigation</td>
+                        </tr>
+
+                        <tr>
+                            <td>S002</td>
+                            <td>Rohan Verma</td>
+                            <td>Bhopal</td>
+                            <td>3</td>
+                            <td class="warning">MEDIUM</td>
+                            <td>Monitoring</td>
+                        </tr>
+
+                        <tr>
+                            <td>S003</td>
+                            <td>Sameer Khan</td>
+                            <td>Delhi</td>
+                            <td>7</td>
+                            <td class="danger">HIGH</td>
+                            <td>Under Investigation</td>
+                        </tr>
+
+                        <tr>
+                            <td>S004</td>
+                            <td>Neha Sharma</td>
+                            <td>Mumbai</td>
+                            <td>2</td>
+                            <td>LOW</td>
+                            <td>Cleared</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+
+        <!-- NETWORK -->
+        <section id="network-page" class="page">
+
+            <h2>Network Analysis</h2>
+            <p>Interactive relationship analysis between suspects.</p>
+
+            <div class="network-box">
+
+                <svg viewBox="0 0 800 500">
+
+                    <line x1="400" y1="250" x2="180" y2="120"></line>
+                    <line x1="400" y1="250" x2="620" y2="120"></line>
+                    <line x1="400" y1="250" x2="180" y2="380"></line>
+                    <line x1="400" y1="250" x2="620" y2="380"></line>
+
+                    <circle cx="400" cy="250" r="55"
+                            onclick="nodeInfo('Arjun Mehta')"></circle>
+
+                    <circle cx="180" cy="120" r="40"
+                            onclick="nodeInfo('Rohan Verma')"></circle>
+
+                    <circle cx="620" cy="120" r="40"
+                            onclick="nodeInfo('Sameer Khan')"></circle>
+
+                    <circle cx="180" cy="380" r="40"
+                            onclick="nodeInfo('Vikram Singh')"></circle>
+
+                    <circle cx="620" cy="380" r="40"
+                            onclick="nodeInfo('Neha Sharma')"></circle>
+
+                    <text x="400" y="255">ARJUN</text>
+                    <text x="180" y="125">ROHAN</text>
+                    <text x="620" y="125">SAMEER</text>
+                    <text x="180" y="385">VIKRAM</text>
+                    <text x="620" y="385">NEHA</text>
+
+                </svg>
+
+            </div>
+
+        </section>
+
+
+        <!-- DOCUMENTS -->
+        <section id="documents-page" class="page">
+
+            <h2>Document Verification</h2>
+            <p>AI-assisted suspicious document detection.</p>
+
+            <div class="upload-box">
+                <input type="file" id="documentInput" accept="image/*,.pdf">
+
+                <button onclick="analyzeDocument()">
+                    🔍 Analyze Document
+                </button>
+
+                <div id="documentResult"></div>
+            </div>
+
+        </section>
+
+
+        <!-- CASES -->
+        <section id="cases-page" class="page">
+
+            <h2>Case Management</h2>
+            <p>Manage ongoing investigation cases.</p>
+
+            <div class="case-grid">
+
+                <div class="case-card clickable" onclick="caseDetails('CASE-1024')">
+                    <h3>CASE-1024</h3>
+                    <p>Organized Crime Investigation</p>
+                    <span class="danger">HIGH RISK</span>
+                </div>
+
+                <div class="case-card clickable" onclick="caseDetails('CASE-1021')">
+                    <h3>CASE-1021</h3>
+                    <p>Financial Fraud Network</p>
+                    <span class="warning">MEDIUM RISK</span>
+                </div>
+
+                <div class="case-card clickable" onclick="caseDetails('CASE-1018')">
+                    <h3>CASE-1018</h3>
+                    <p>Document Forgery</p>
+                    <span class="danger">HIGH RISK</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REPORTS -->
+        <section id="reports-page" class="page">
+
+            <h2>Reports</h2>
+            <p>Generate investigation summary reports.</p>
+
+            <div class="report-box">
+                <h3>Investigation Report</h3>
+                <p>Generate a demo AI investigation report.</p>
+
+                <button onclick="generateReport()">
+                    📊 Generate Report
+                </button>
+
+                <div id="reportResult"></div>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
